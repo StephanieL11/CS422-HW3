@@ -23,6 +23,7 @@
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 /** CLASS: Main
@@ -44,7 +45,8 @@ public class Main {
         Q2 q2 = new Q2();
 
         // Run Programs
-        runQ1(scan, q1);
+//        runQ1v1(scan, q1);
+        runQ1v2(scan, q1);
         runQ2(scan, q2);
 
         // Print Closer
@@ -64,12 +66,13 @@ public class Main {
     }
 
 
-    /** METHOD: runQ1
+    /** METHOD: runQ1v1
      *  DESCRIPTION: contains program logic for assignment question 1
+     *               version 1 (counts total duplicates using set method)
      * @param scan = scanner object
      * @param q1 = Q1 object
      */
-    private static void runQ1(Scanner scan, Q1 q1) {
+    private static void runQ1v1(Scanner scan, Q1 q1) {
 
         // Print Header
         System.out.println("-----------------------------------------");
@@ -85,7 +88,63 @@ public class Main {
             // Count Duplicate Words & Print Result
             int duplicateWords = q1.countDuplicateWords(input);
             System.out.println("Number of duplicate words: " + duplicateWords + "\n");
-            // Prompt User to Input Sentence, or Q to Quit
+            // Prompt User to Input New Sentence, or Q to Quit
+            System.out.println("Enter another sentence, or q to quit:");
+            input = scan.nextLine();
+        }
+    }
+
+
+    /** METHOD: runQ1v2
+     *  DESCRIPTION: contains program logic for assignment question 1
+     *               version 2 (counts total duplicates using map method)
+     * @param scan = scanner object
+     * @param q1 = Q1 object
+     */
+    private static void runQ1v2(Scanner scan, Q1 q1) {
+
+        // Print Header
+        System.out.println("-----------------------------------------");
+        System.out.println("Q1: COUNT THE DUPLICATE WORDS");
+        System.out.println("-----------------------------------------");
+
+        // Prompt User to Input Sentence
+        System.out.println("Please enter a sentence: ");
+        String input = scan.nextLine();
+
+        // Continue Looping until User Enters Q
+        while (!input.equalsIgnoreCase("q")) {
+            // Generate Map (Unique Words : Word Count)
+            Map<String, Integer> map = q1.mapWordToCount(input);
+            // Track Total Duplicate Count
+            int totalDuplicates = 0;
+            // Loop Through Map Entries
+            for (Map.Entry<String, Integer> entry: map.entrySet()) {
+                // Get Word
+                String word = entry.getKey();
+                // Get Word Count
+                int wordCount = entry.getValue();
+                // If Word has No Duplicates
+                if (wordCount == 1) {
+                    // Print to Console
+                    System.out.println("The word '" + word + "' appears 1 time (0 duplicates).");
+                }
+                // If Word has Duplicates
+                else {
+                    // Calculate # wordDuplicates
+                    int wordDuplicates = wordCount - 1;
+                    // Update # totalDuplicates
+                    totalDuplicates += wordDuplicates;
+                    // Print to Console
+                    System.out.println("The word '" + word +
+                            "' appears a total of '" + wordCount + "' times" +
+                            " (" + wordDuplicates + " duplicates).");
+                }
+            }
+            // Print totalDuplicates
+            System.out.println("TOTAL DUPLICATES: " + totalDuplicates + "\n");
+
+            // Prompt User to Input New Sentence, or Q to Quit
             System.out.println("Enter another sentence, or q to quit:");
             input = scan.nextLine();
         }
