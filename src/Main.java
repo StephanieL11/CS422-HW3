@@ -1,4 +1,26 @@
 
+/** #############################################################################
+ * COURSE: BU MET CS422 (Advanced Java)
+ * SEMESTER: Spring 2021
+ * PROFESSOR: Vic Berry
+ * AUTHOR: Stephanie Lin
+ *
+ * TITLE: Homework 3 (Java Generic Collection Classes)
+ *
+ * DESCRIPTION: this program answers the 2 questions assigned in homework 3
+ * Q1. Using Generic Collections write a program that
+ * determines and prints the number of duplicate words in a sentence.
+ * Q2. Write a program that inserts 25 random integers into a LinkedList in order.
+ * Once the numbers are added, print the list, sum, and floating-point average.
+ *
+ * ASSUMPTIONS:
+ * 1. Words only contain the letters A-Z
+ * 2. Upper & lowercase letters are treated as the same
+ * 3. A duplicate word is defined as any word that has already been seen
+ * 4. Random integers are between 0 & 100 (inclusive)
+ ############################################################################# */
+
+
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
