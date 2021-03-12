@@ -44,7 +44,8 @@ public class Q2 {
      * @return a float representing the average
      */
     public float getAverageList(List<Integer> list) {
-        return (getSumList(list) / list.size());
+        float sum = getSumList(list);
+        return (sum / list.size());
     }
 
 }
